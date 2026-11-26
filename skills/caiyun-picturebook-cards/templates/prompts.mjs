@@ -1,9 +1,8 @@
 /**
- * 第三篇：「消费降级时代，普通人如何合理消费」14 页分镜 prompt
- * 毛选概念映射：以退为进（消费降级=主动战略）/ 没有调查就没有发言权（记账）/
- *               抓主要矛盾（钱花刀刃上）/ 集中优势兵力（一件好物）/ 自己动手丰衣足食 /
- *               攒钱是持久战、不打无准备之仗（存款=根据地）
- * 贯穿元素：存钱罐军团（第三篇的"角色锚点"）、奶茶/包裹/账本等消费符号
+ * 第四篇：「如何对抗孤独——毛选的答案是群众路线」14 页分镜 prompt
+ * 历史案例页（星星之火/井冈山群众工作/半条被子）：图内不出现军装、不出现任何文字符号，
+ * 用蜡烛、红旗、挑水、剪被子等符号语言规避敏感与乱码。
+ * 新增贯穿符号：烛光（星星之火）、小红旗（根据地）、暖光门缝（到群众中去）。
  */
 
 const STYLE =
@@ -28,142 +27,138 @@ export const PROMPTS = [
     id: 'page-01',
     file: 'page-01.jpg',
     prompt: S(
-      `Scene: a lively shopping street with sale banners, balloons and a crowd waving blank discount signs, ` +
-      `all slightly blurred behind. In the calm foreground ${HEROINE} takes one confident step backward, ` +
-      `hugging a big smiling piggy bank to her chest with both arms, eyes closed with a serene determined smile, ` +
-      `like wisely stepping out of the frenzy. Warm evening light, strong calm-versus-chaos contrast.`,
+      `Scene: a quiet bedroom at dusk. ${HEROINE} stands by a big window holding a small red flag, ` +
+      `gazing at the distant scattered warm lights of a town waking up below the hills. ` +
+      `Her room is dim and quiet, the outside lights warm and inviting, thoughtful mood, ` +
+      `clean simple composition.`,
     ),
   },
   {
     id: 'page-02',
     file: 'page-02.jpg',
     prompt: S(
-      `Scene: a cute bubble-tea shop counter. ${HEROINE} stands before the counter staring up at ` +
-      `a big blank menu board, holding a few small coins in her open palm, a big sweat drop on her head, ` +
-      `hesitant torn expression, one foot already stepping back. ` +
-      `A patient cashier stands behind the counter with cups and a sealing machine, pastel shop interior.`,
+      `Scene: late night. ${HEROINE} slumps at her desk staring down at a glowing phone in her hands, ` +
+      `blue light on her sad face. Around her head float many small dim gray circles like distant ` +
+      `unlit windows, only one tiny warm food delivery box icon lit among them. ` +
+      `Melancholy quiet mood, clean dark background.`,
     ),
   },
   {
     id: 'page-03',
     file: 'page-03.jpg',
     prompt: S(
-      `Scene: a storage corner stacked with towering piles of unopened delivery cardboard boxes. ` +
-      `${HEROINE} kneels opening one box and finds it stuffed with endless packs of paper towels, ` +
-      `blank stunned face with a tiny floating question doodle, faint dust sparkles around, ` +
-      `stacks towering over her, comedic overload mood.`,
+      `Scene: just after coming home. ${HEROINE} slides down to sit on the floor against the closed door, ` +
+      `knees pulled up, bag still on the floor beside her, a thin line of warm light leaking through ` +
+      `the door crack contrasting the dim quiet room, muted lonely mood.`,
     ),
   },
   {
     id: 'page-04',
     file: 'page-04.jpg',
     prompt: S(
-      `Scene: a gloomy room with one burned-out lightbulb hanging above. ${HEROINE} sits on the floor ` +
-      `wrapped in a thin blanket eating plain instant noodles from a bowl, sad teary eyes, ` +
-      `beside her a wallet shut tight with a tiny chain and padlock. Everything gray and joyless, ` +
-      `over-thrift misery mood, gentle humor.`,
+      `Scene: a living room with curtains drawn in daytime. ${HEROINE} lies sprawled on the sofa ` +
+      `holding her phone loosely above her face, above her head a hand-drawn doodle of a battery ` +
+      `outline with only a tiny red sliver of charge left, blanket half fallen, ` +
+      `drained low-energy mood, gentle humor.`,
     ),
   },
   {
     id: 'page-05',
     file: 'page-05.jpg',
     prompt: S(
-      `Scene: a warm-lit desk at night. ${HEROINE} wears round glasses and studies a long paper receipt ` +
-      `spread across the desk with a calculator in one hand, her eyes going wide in sudden realization, ` +
-      `an open notebook whose cover has a small gold star, scattered receipts, a mug, moonlit window, ` +
-      `detective discovering-the-truth mood.`,
+      `Scene: a dark cozy corner. ${HEROINE} sits curled up inside a big translucent soap-bubble ` +
+      `that separates her from a warm blurred gathering of silhouettes in the background. ` +
+      `From inside the bubble, her own hand reaches up pressing a finger against the bubble wall, ` +
+      `a small crack of golden light spreading from her fingertip. Hopeful turning-point mood.`,
     ),
   },
   {
     id: 'page-06',
     file: 'page-06.jpg',
     prompt: S(
-      `Scene: split composition front and back. Foreground: ${HEROINE} happily eating a simple warm ` +
-      `homemade meal at a small tidy table with a checkered cloth, glowing with contentment. ` +
-      `Background on a shelf: fancy glossy paper shopping bags gathering dust with a little cobweb doodle, ` +
-      `contrast of warm real life versus cold vanity, cozy evening light.`,
+      `Scene: darkness with a vast starry sky. Close composition: ${HEROINE} cups a single lit candle ` +
+      `with both hands, the small flame lighting up her hopeful half-smiling face, ` +
+      `far behind her a few faint stars and the silhouette of a great mountain under a tiny sunrise glow, ` +
+      `quiet brave mood, strong light-and-dark contrast.`,
     ),
   },
   {
     id: 'page-07',
     file: 'page-07.jpg',
     prompt: S(
-      `Scene: minimal chapter-card composition. Like a tiny general, ${HEROINE} leans over ` +
-      `a table studying a hand-drawn town map model, planting three small red flags on key spots, ` +
-      `one flag by a tiny house, one by a heart shape, one by a book shape, all shapes blank without text, ` +
-      `spotlight from above, strategic focused mood, clean background.`,
+      `Scene: minimal chapter-card composition at warm night. On a small grassy clearing, ` +
+      `${HEROINE} kneels setting up a tiny camp: a little orange tent, a small red flag on a pole, ` +
+      `a campfire with a kettle hanging over it, fireflies around, ` +
+      `deep blue night sky with soft stars, cozy building-a-home mood.`,
     ),
   },
   {
     id: 'page-08',
     file: 'page-08.jpg',
     prompt: S(
-      `Scene: a bright tidy room. ${HEROINE} happily drops gold coins into two big piggy banks on the shelf: ` +
-      `one piggy bank shaped like an apple, the other shaped like a stack of books, both smiling. ` +
-      `With her other hand she tosses a fancy ribbon gift box into a corner bin. ` +
-      `Clear priority symbolism, cheerful decisive mood, clean composition.`,
+      `Scene: a sunny village path. ${HEROINE} carries two full water buckets hanging from ` +
+      `a wooden shoulder pole, walking toward a cottage where a smiling old granny waits ` +
+      `offering a cup of tea, laundry lines and vegetable patches nearby, ` +
+      `warm helpful-chores mood, gentle rural details.`,
     ),
   },
   {
     id: 'page-09',
     file: 'page-09.jpg',
     prompt: S(
-      `Scene: split contrast composition. Left side: a sad pile of cheap broken trinkets, ` +
-      `cracked plastic toys, tangled cables, faded trinkets. Right side: ${HEROINE} kneels ` +
-      `lovingly holding up ONE beautiful shiny well-crafted leather boot with both hands, ` +
-      `the boot glowing softly with sparkles, her eyes sparkling. ` +
-      `Quality-versus-quantity message, warm light on the right, dull gray on the left.`,
+      `Scene: ${HEROINE} pushes open her door from the dim hallway: outside is a lively warm street ` +
+      `with lanterns, small food stalls and strolling silhouettes, golden light pouring in past her, ` +
+      `her face lit up with surprise and hope, one foot stepping forward. ` +
+      `Strong dark-to-light contrast, inviting mood.`,
     ),
   },
   {
     id: 'page-10',
     file: 'page-10.jpg',
     prompt: S(
-      `Scene: minimal chapter-card composition. ${HEROINE} wears a cute apron and raises a spatula ` +
-      `like a heroic sword with one hand and a frying pan in the other, dynamic pose, ` +
-      `fresh vegetables (tomatoes, eggs, green onions) floating around her in comic style, ` +
-      `cozy kitchen background, energetic self-sufficient mood.`,
+      `Scene: an office corner. Shy ${HEROINE} offers a small plate of homemade snacks to ` +
+      `a surprised delighted coworker, a tiny heart doodle floating between them, ` +
+      `the coworker clapping hands in joy. Warm daylight, first-step courage mood, clean two-person scene.`,
     ),
   },
   {
     id: 'page-11',
     file: 'page-11.jpg',
     prompt: S(
-      `Scene: a cozy kitchen. ${HEROINE} proudly presents a big plate of homemade cooking — ` +
-      `rice topped with a smiley fried egg face and little vegetables — steam swirling up, ` +
-      `her smile huge and proud, a small cat on the floor sniffing hopefully. ` +
-      `In the far corner, a neglected stack of empty delivery boxes. Warm proud mood.`,
+      `Scene: a long wooden table in a dim cozy space. ${HEROINE} lights the first candle with a match, ` +
+      `and the flame is jumping from candle to candle lighting up a whole row, ` +
+      `warm silhouettes of friends gathering around the growing glow, ` +
+      `fire spreading like little stars, warm hopeful gathering mood.`,
     ),
   },
   {
     id: 'page-12',
     file: 'page-12.jpg',
     prompt: S(
-      `Scene: minimal chapter-card composition in morning light. A row of piggy banks stands ` +
-      `in neat line like little soldiers on a shelf, different sizes from small to large, ` +
-      `the biggest one wears a tiny general cap. ${HEROINE} stands before them saluting seriously, ` +
-      `one hand at her forehead, the other holding a gold coin, adorable disciplined mood.`,
+      `Scene: split composition. Bright side: ${HEROINE} waters a small green sprout in a pot with ` +
+      `a tiny watering can, the sprout lifting happy little leaves in sunlight. ` +
+      `Gray side: another identical pot with a wilted drooping sprut nobody waters, in shadow. ` +
+      `Clear care-versus-neglect symbolism, clean minimal composition.`,
     ),
   },
   {
     id: 'page-13',
     file: 'page-13.jpg',
     prompt: S(
-      `Scene: payday at a tidy desk with a wall calendar behind (blank grid, one day circled in red). ` +
-      `${HEROINE} drops one big shiny gold coin into the biggest smiling piggy bank with both hands, ` +
-      `determined happy face, a neat line of smaller coins waiting their turn on the desk like a queue. ` +
-      `Pay-yourself-first ritual mood, warm morning light.`,
+      `Scene: small stone steps of a house entrance. ${HEROINE} helps an elderly neighbor granny ` +
+      `carry a big cardboard box up the steps, the granny turning back smiling with gratitude, ` +
+      `below them a hand-drawn doodle of two separate little islands being connected by a small bridge. ` +
+      `Warm helping-hand mood.`,
     ),
   },
   {
     id: 'page-14',
     file: 'page-14.jpg',
     prompt: S(
-      `Scene: a cozy warm room in the evening. ${HEROINE} curls up in a soft armchair holding ` +
-      `a steaming mug with both hands, a small cat sleeping curled on her lap, ` +
-      `a tidy bookshelf, a warm floor lamp, a small happy piggy bank on the side table. ` +
-      `Her eyes closed with a content gentle smile. Rich-in-spirit simple-life ending mood, ` +
-      `warm golden tones.`,
+      `Scene: a grassy hilltop at sunset. ${HEROINE} and two friends stand side by side seen ` +
+      `from behind at three-quarter angle, watching a big warm sun sink over soft hills, ` +
+      `their long shadows joined together on the grass, a few birds in the golden sky, ` +
+      `togetherness ending mood, rich warm gold and pink palette.`,
     ),
   },
 ];

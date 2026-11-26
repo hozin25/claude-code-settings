@@ -1,17 +1,17 @@
 ---
 name: caiyun-picturebook-cards
-description: "Use when用户要做抖音/小红书彩铅手绘绘本风图文卡、科普图文、毛选解读类知识图文、或任何'插画+手写体大字'的 swipe cards；也用于 cogview-4 文生图、角色人设一致性、图文卡流水线。即用 AI 文生图（GLM cogview-4）+ HTML 文字层 + puppeteer 截图，批量产出 1080x1440 图文卡。Triggers: 彩铅风, 绘本风, 图文卡, 抖音图文, 科普图文, 毛选图文, cogview, 人设一致, 出一组图文, 1080x1440."
+description: "Use when用户要做抖音/小红书彩铅手绘绘本风图文卡、科普图文、毛选解读类知识图文、或任何'插画+手写体大字'的 swipe cards；也用于 cogview-4 文生图、角色人设一致性、图文卡流水线、发布文案与标题配套。即用 AI 文生图（GLM cogview-4）+ HTML 文字层 + puppeteer 截图，批量产出 1080x1440 图文卡，并配套发布标题/文案/首评。Triggers: 彩铅风, 绘本风, 图文卡, 抖音图文, 科普图文, 毛选图文, cogview, 人设一致, 出一组图文, 1080x1440, 发布文案, 爆款标题."
 ---
 
 # 彩铅绘本图文卡（cogview-4 流水线）
 
-复刻「毛选绘记」式抖音图文卡的三段流水线：**cogview-4 文生图 → HTML 文字层 → puppeteer 截图**。
-本 skill 的全部参数都在真实项目（职场老好人×毛选，cogview-4）里验证过，含 6 条踩坑铁律。
+复刻「毛选绘记」式抖音图文卡的四段流水线：**分镜文案 → cogview-4 文生图（双桶挑片）→ HTML 文字层 → puppeteer 截图**，最后配套发布标题/文案/首评。
+本 skill 的全部参数在 4 个真实主题（职场老好人 / AI 焦虑 / 消费降级 / 对抗孤独，共 56+ 页成片）里验证过，含 6 条踩坑铁律。
 
 ## When to Use
 
 - 批量产出"彩铅绘本插画 + 顶部手写体论点"的竖屏图文卡（1080×1440，抖音 3:4）
-- 需要固定人设跨页出现（如绿衣双马尾女孩贯穿全篇）
+- 需要固定人设跨页出现（绿衣双马尾女主、贯穿角色/道具锚点）
 - **不用于**：照片级写实、矢量扁平风（用 code-animation-prompts 的 K 系列）、纯排版卡
 
 ## 快速开始
@@ -21,10 +21,25 @@ mkdir project && cd project
 # 从本 skill 的 templates/ 复制 lib.mjs gen-images.mjs prompts.mjs 到 scripts/，
 # shoot.cjs cards-template.html 到项目根
 npm init -y && npm i puppeteer-core
-echo "GLM_API_KEY=xxx" > .env   # bigmodel.cn 的 key，cogview-4 需余额（约0.06元/张）
+echo "GLM_API_KEY=xxx" > .env   # bigmodel.cn 的 key，cogview-4 需余额（约0.06元/张，1152x1536 档）
 node scripts/gen-images.mjs     # 出图到 assets/
 node shoot.cjs                  # 截图到 out/（1080x1440 PNG）
 ```
+
+## 标准量产流程（四篇连载验证过）
+
+1. **分镜**：三段式骨架——痛点钩子(2-3页) → 误区转折+权威金句(2-3页) → 三个方法论"章节页+展开"(7-8页) → 金句收尾(1页)。分镜文案先给用户过目再出图。
+2. **双桶出图**：每页先跑一遍存为 `-a.jpg`，再 `--force` 跑一遍存为 `-b.jpg`；用 ffmpeg hstack 拼 A/B 对比图逐页挑优，胜者覆盖回 `page-NN.jpg`。废片率减半，+0.06 元/页。
+3. **组版**：单文件 cards.html，每页一个 `<section class="card">`，标题按分镜配 〖高亮〗/红字。长文案页（3-5 行）用 48px 版式。
+4. **QC**：截图后用 ffmpeg `xstack` 拼 2×2 网格自查——标题断行、人物/关键道具裁切、标签挡脸、水印入画、人设漂移，全过再交付。
+5. **交付**：成片按页码补零命名（01.png…14.png），存入用户指定文件夹的 `第N篇-标题/` 子目录。
+6. **发布配套**：按 [references/publish-copy.md](references/publish-copy.md) 的七段式配齐——主推标题（悬念反差型）+ 2-3 备选、发布配文（暴论开头/自白代入/信息缺口/站队提问/5个分层标签）、首评话术（点出最反直觉的一页）。文案避免直呼"教员"。
+
+## 多篇连载约定（同一项目目录复用时）
+
+- 换主题前先归档：`assets/page-*.jpg` 移入 `assets/topicN-标题/`，成片备份到 `out/topicN/`，当前 cards.html 改名 `cards-topicN.html`（gen 脚本靠"文件存在即跳过"缓存，不归档会串篇）
+- 每篇的 prompt 全文留在 scripts/prompts.mjs 里随篇覆盖，旧篇自然归档在素材夹里
+- 修正类反馈（换图/改文案）直接改 cards.html 或指定 `-a/-b` 备选重选，不必重新出图
 
 ## 六条铁律（每条都真实翻过车）
 
@@ -43,7 +58,7 @@ node shoot.cjs                  # 截图到 out/（1080x1440 PNG）
 
 - 角色库和已验证的 STYLE/NEGATIVE 全文见 [references/style-bible.md](references/style-bible.md)
 - 场景段写"关键动作"要具体（`hugs a tall wobbly tower of folders tightly in both arms, the stack covers half her face`），模糊写法（如只写 reading a book）会丢动作
-- GEN_CONFIG：`model: cogview-4, size: 1152x1536`（3:4 升档版，缩进 1080 卡更细腻，已验证可用；3-flash 免费 but 画质差一个档位）
+- GEN_CONFIG：`model: cogview-4, size: 1152x1536`（3:4 升档版；3-flash 免费 but 画质差一个档位）
 
 ## HTML 文字层系统（cards-template.html）
 
@@ -51,21 +66,7 @@ node shoot.cjs                  # 截图到 out/（1080x1440 PNG）
 - 黄色马克笔高亮：`background:linear-gradient(to top, rgba(255,213,79,.9) 0 24%, transparent 24%)`
 - 标题区与 AI 图的拼接缝：img 上 `mask-image:linear-gradient(to bottom, transparent 0, #000 12%)` 渐隐进纸色
 - 红底白字标签 `.tag`：`#E85D4A` 圆角气泡 + `::after` 小尾巴，±5° 旋转，绝对定位在角色旁
-- 卡片骨架 1080×1440，标题区 padding 56px/64-66px 字号；截图前 `document.fonts.ready` + 1.5s
-
-## 标准量产流程（三篇连载验证过）
-
-1. **分镜**：三段式骨架——痛点钩子(2-3页) → 误区转折+权威金句(2-3页) → 三个方法论"章节页+展开"(7-8页) → 金句收尾(1页)。分镜文案先给用户过目再出图。
-2. **双桶出图**：每页先跑一遍存为 `-a.jpg`，再 `--force` 跑一遍存为 `-b.jpg`；用 ffmpeg hstack 拼 A/B 对比图逐页挑优，胜者覆盖回 `page-NN.jpg`。废片率减半，+0.06 元/页。
-3. **组版**：单文件 cards.html，每页一个 `<section class="card">`，标题按分镜配 〖高亮〗/红字。
-4. **QC**：截图后用 ffmpeg `xstack` 拼 2×2 网格自查——标题断行、人物/关键道具裁切、标签挡脸、水印入画、人设漂移，全过再交付。
-5. **交付**：成片按页码补零命名（01.png…14.png），存入用户桌面文件夹的 `第N篇-标题/` 子目录。
-
-## 多篇连载约定（同一项目目录复用时）
-
-- 换主题前先归档：`assets/page-*.jpg` 移入 `assets/topicN-标题/`，成片备份到 `out/topicN/`，当前 cards.html 改名 `cards-topicN.html`（gen 脚本靠"文件存在即跳过"缓存，不归档会串篇）
-- 每篇的 prompt 全文留在 scripts/prompts.mjs 里随篇覆盖，旧篇自然归档在素材夹里
-- 修正类反馈（换图/改文案）直接改 cards.html 或指定 `-a/-b` 备选重选，不必重新出图
+- 卡片骨架 1080×1440，短文案 64px / 封面 66px / 长文案（3-5 行）48px；截图前 `document.fonts.ready` + 1.5s
 
 ## 验收
 
@@ -74,5 +75,6 @@ node shoot.cjs                  # 截图到 out/（1080x1440 PNG）
 
 ## 详细文档
 
-- [style-bible.md](references/style-bible.md) — 已验证的 STYLE/NEGATIVE/角色块全文、敏感词清单、参数表
+- [references/style-bible.md](references/style-bible.md) — 已验证的 STYLE/NEGATIVE/角色库全文、情绪与符号调参经验、敏感词清单、参数表
+- [references/publish-copy.md](references/publish-copy.md) — 发布配套：标题公式、发布配文七段式、首评话术、标签分层、措辞安全
 - templates/ — lib.mjs / gen-images.mjs / prompts.mjs（含真实 prompt 示例）/ shoot.cjs / cards-template.html
